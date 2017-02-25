@@ -11,12 +11,14 @@
         <form class="col s4 push-s3" method="POST">
           <div class="row">
 	    <div class="input-field col s12">
-	      {{ form.hidden_tag() }}
-	      {{ form.email(id="email") }}
+	      <input id="email" type="text" name="email">
 	      <label for="email">Email</label>
 	    </div>
           </div>
-	  {{ form.submit(class="btn waves-effect waves-light") }}
+
+          <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+            <i class="material-icons right">send</i>
+          </button>
         
         </form>
       </div>
