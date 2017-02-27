@@ -2,11 +2,11 @@
 
 {% block page_content %}
 
-      <br></br>
+      <br>
       <div class="page-header">
-        <h1>Hello, {% if name %}{{ name }}{% else %}Stranger{% endif %}!</h1>
-      </div>
-      <br></br>
+
+      </div>          
+      <br>
       <div class="row">
         <form class="col s4 push-s3" method="POST">
           <div class="row">
@@ -16,8 +16,22 @@
 	      <label for="email">Email</label>
 	    </div>
           </div>
+          <div class="row">
+	    <div class="input-field col s12">
+	      {{ form.hidden_tag() }}
+	      {{ form.password(id="password") }}
+	      <label for="password">Password</label>
+	    </div>
+          </div>
+	  <p>
+	    {{ form.remember_me(id="test5") }}
+	    <label for="test5">Remember me</label>
+	  </p>
+          {% if notValid %}
+	    <div class="alert">Invalid user or password!</div>
+	  {% endif %}
 	  {{ form.submit(class="btn waves-effect waves-light") }}
-        
+
         </form>
       </div>
 

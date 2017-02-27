@@ -10,6 +10,9 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="{{url_for('static', filename='css/materialize.css')}}" type="text/css" rel="stylesheet" media="screen,projection"/>
   <link href="{{url_for('static', filename='css/style.css')}}" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <style type="text/css">
+    .alert {font-size:12px; color:red;}
+  </style>
 {% endblock %}
 </head>
 
@@ -18,7 +21,11 @@
   <nav class="light-blue lighten-1" role="navigation">
     <div class="nav-wrapper container"><a id="logo-container" href="/" class="brand-logo">My Keep</a>
       <ul class="right hide-on-med-and-down">
-        <li><a href="auth/login">Login</a></li>
+	{% if current_user.is_authenticated %}
+        <li><a href="{{ url_for('auth.logout') }}">Log out</a></li>
+	{% else %}
+	<li><a href="{{ url_for('auth.login') }}">Log in</a></li>
+	{% endif %}
 	<li><a href="#">Sign up</a></li>
       </ul>
     </div>
