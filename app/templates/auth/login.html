@@ -30,8 +30,10 @@
           {% if notValid %}
 	    <div class="alert">Invalid user or password!</div>
 	  {% endif %}
+	  <div class="row">
 	  {{ form.submit(class="btn waves-effect waves-light") }}
-
+	  <span>New user? <a href="{{ url_for('auth.register') }}">Click here to register</a>.</span>
+	  </div>
         </form>
       </div>
 

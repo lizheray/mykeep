@@ -29,7 +29,7 @@
           {% if existUsername %}
 	    <div class="alert">Username already in use!</div>
 	  {% elif invalidUsername %}
-	    <div class="alert">Username must have only letters, numbers, dots or underscores!</div>
+	    <div class="alert">Username must start with letters, and have only letters, numbers, dots or underscores!</div>
 	  {% endif %}
           <div class="row">
 	    <div class="input-field col s12">
@@ -48,8 +48,10 @@
           {% if dismatchpsd %}
 	    <div class="alert">Password must match!</div>
 	  {% endif %}
+	  <div class="row">
 	  {{ form.submit(class="btn waves-effect waves-light") }}
-
+	  <span>Have an account? <a href="{{ url_for('auth.login') }}">Click here to login</a>.</span>
+	  </div>
         </form>
       </div>
 
