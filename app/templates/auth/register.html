@@ -1,0 +1,57 @@
+{% extends "base.html" %}  
+
+{% block page_content %}
+
+      <br>
+      <div class="page-header">
+
+      </div>          
+      <br>
+      <div class="row">
+        <form class="col s4 push-s3" method="POST">
+          <div class="row">
+	    <div class="input-field col s12">
+	      {{ form.hidden_tag() }}
+	      {{ form.email(id="email") }}
+	      <label for="email">Email</label>
+	    </div>
+          </div>
+          {% if existEmail %}
+	    <div class="alert">Email already Exist!</div>
+	  {% endif %}
+          <div class="row">
+	    <div class="input-field col s12">
+	      {{ form.hidden_tag() }}
+	      {{ form.username(id="name") }}
+	      <label for="name">Username</label>
+	    </div>
+          </div>
+          {% if existUsername %}
+	    <div class="alert">Username already in use!</div>
+	  {% elif invalidUsername %}
+	    <div class="alert">Username must have only letters, numbers, dots or underscores!</div>
+	  {% endif %}
+          <div class="row">
+	    <div class="input-field col s12">
+	      {{ form.hidden_tag() }}
+	      {{ form.password(id="password") }}
+	      <label for="password">Password</label>
+	    </div>
+          </div>
+          <div class="row">
+	    <div class="input-field col s12">
+	      {{ form.hidden_tag() }}
+	      {{ form.password2(id="password") }}
+	      <label for="password">Confirm Password</label>
+	    </div>
+          </div>
+          {% if dismatchpsd %}
+	    <div class="alert">Password must match!</div>
+	  {% endif %}
+	  {{ form.submit(class="btn waves-effect waves-light") }}
+
+        </form>
+      </div>
+
+{% endblock %}
+
