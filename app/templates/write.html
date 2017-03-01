@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block page_content %}
+      <br>
+      <div class="row">
+        <form class="col s12" method="POST">
+          <div class="row">
+	    <div class="input-field col s4">
+	      {{ form.hidden_tag() }}
+	      {{ form.title(id="email") }}
+	      <label for="email">Title</label>
+	    </div>
+          </div>
+          <div class="row">
+	    <div class="input-field col s12">
+	      {{ form.hidden_tag() }}
+	      {{ form.body(id="editor") }}
+	    </div>
+          </div>
+	  <p>
+	    {{ form.isPublic(id="test5") }}
+	    <label for="test5">Public</label>
+	  </p>
+	  <div class="row">
+	  {{ form.submit(class="btn waves-effect waves-light") }}
+	  </div>
+        </form>
+      </div>
+{% endblock %}

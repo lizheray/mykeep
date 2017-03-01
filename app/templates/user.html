@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block page_content %}
+{% for note in notes %}
+  <br>
+  <p>{{ note.title }}</p>
+  <p>{{ note.body }}</p>
+  <p>{{ note.timestamp }}</p>
+  <p>{{ note.isPublic }}</p>
+  <p>{{ note.author }}</p>
+{% endfor %}
+
+{% endblock %}

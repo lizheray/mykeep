@@ -8,11 +8,12 @@
 
   <!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="{{url_for('static', filename='css/materialize.css')}}" type="text/css" rel="stylesheet" media="screen,projection"/>
-  <link href="{{url_for('static', filename='css/style.css')}}" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="{{ url_for('static', filename='css/materialize.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="{{ url_for('static', filename='css/style.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
   <style type="text/css">
     .alert {font-size:12px; color:red;}
   </style>
+  <link href="{{ url_for('static', filename='styles/simditor.css') }}" rel="stylesheet" type="text/css"/>
 {% endblock %}
 </head>
 
@@ -21,8 +22,10 @@
   <nav class="light-blue lighten-1" role="navigation">
     <div class="nav-wrapper container"><a id="logo-container" href="/" class="brand-logo">My Keep</a>
       <ul class="right hide-on-med-and-down">
+	<li><a href="{{ url_for('main.write') }}">write</a></li>
 	{% if current_user.is_authenticated %}
         <li><a href="{{ url_for('auth.logout') }}">Log out</a></li>
+        <li><a href="{{ url_for('main.user', username=current_user.username) }}">my notes</a></li>
 	{% else %}
 	<li><a href="{{ url_for('auth.login') }}">Log in</a></li>
         <li><a href="{{ url_for('auth.register') }}">Sign up</a></li>
@@ -43,7 +46,18 @@
 
   <!--  Scripts-->
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <script src="{{url_for('static', filename='js/materialize.js')}}"></script>
-  <script src="{{url_for('static', filename='js/init.js')}}"></script>
+  <script src="{{ url_for('static', filename='js/materialize.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/init.js') }}"></script>
+  <script type="text/javascript" src="{{ url_for('static', filename='scripts/jquery.min.js') }}"></script>
+  <script type="text/javascript" src="{{ url_for('static', filename='scripts/module.js') }}"></script>
+  <script type="text/javascript" src="{{ url_for('static', filename='scripts/hotkeys.js') }}"></script>
+  <script type="text/javascript" src="{{ url_for('static', filename='scripts/uploader.js') }}"></script>
+  <script type="text/javascript" src="{{ url_for('static', filename='scripts/simditor.js') }}"></script>
+  <script>
+    var editor = new Simditor({
+    textarea: $('#editor')
+    //optional options
+  });
+  </script>
 </body>
 </html>
