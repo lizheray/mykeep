@@ -22,10 +22,10 @@
   <nav class="light-blue lighten-1" role="navigation">
     <div class="nav-wrapper container"><a id="logo-container" href="/" class="brand-logo">My Keep</a>
       <ul class="right hide-on-med-and-down">
-	<li><a href="{{ url_for('main.write') }}">write</a></li>
+	<li><a href="{{ url_for('main.write') }}"><i class="material-icons">add</i></a></li>
 	{% if current_user.is_authenticated %}
         <li><a href="{{ url_for('auth.logout') }}">Log out</a></li>
-        <li><a href="{{ url_for('main.user', username=current_user.username) }}">my notes</a></li>
+        <li><a href="{{ url_for('main.user', username=current_user.username) }}"><i class="material-icons">perm_identity</i></a></li>
 	{% else %}
 	<li><a href="{{ url_for('auth.login') }}">Log in</a></li>
         <li><a href="{{ url_for('auth.register') }}">Sign up</a></li>

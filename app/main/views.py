@@ -1,4 +1,4 @@
-from flask import render_template, url_for, redirect
+from flask import render_template, url_for, redirect, request
 from flask_login import current_user, login_required
 
 from . import main
@@ -17,8 +17,7 @@ def write():
 	note = Note(title=form.title.data, body=form.body.data, isPublic=form.isPublic.data, author=current_user._get_current_object())
 	db.session.add(note)
 	return redirect(url_for('.index'))
-    notes = Note.query.order_by(Note.timestamp.desc()).all()
-    return render_template('write.html', form=form, notes=notes)
+    return render_template('write.html', form=form)
 
 @main.route('/user/<username>')
 @login_required
@@ -26,3 +25,33 @@ def user(username):
     user = User.query.filter_by(username=username).first()
     notes = user.notes.order_by(Note.timestamp.desc()).all()
     return render_template('user.html', user=user, notes=notes)
+
+@main.route('/note/<int:id>')
+def note(id):
+    note = Note.query.get_or_404(id)
+    return #render_template('note.html', note=note)
+
+@main.route('/edit/<int:id>', methods=['GET', 'POST'])
+@login_required
+def edit(id):
+    note = Note.query.get_or_404(id)
+    #if current_user != note.author:
+	#abort(403)
+    form = NoteForm()
+    if form.validate_on_submit():
+	note.title = form.title.data
+	note.body = form.body.data
+	note.isPublic = form.isPublic.data
+	db.session.add(note)
+	return redirect(url_for('.index'))
+    form.title.data = note.title
+    form.body.data = note.body
+    form.isPublic.data = note.isPublic
+    return render_template('write.html', form=form)
+
+@main.route('/delete/<int:id>')
+@login_required
+def delete(id):
+    note = Note.query.get_or_404(id)
+    db.session.delete(note)
+    return redirect(request.referrer)
