@@ -7,7 +7,10 @@ from .forms import NoteForm
 
 @main.route('/')
 def index():
-    return render_template('index.html')
+    page = request.args.get('page', 1, type=int)
+    pagination = Note.query.filter_by(isPublic=True).order_by(Note.timestamp.desc()).paginate(page, per_page=12, error_out=False)
+    notes = pagination.items
+    return render_template('index.html', notes=notes, pagination=pagination)
 
 @main.route('/write', methods=['GET', 'POST'])
 @login_required
@@ -23,8 +26,10 @@ def write():
 @login_required
 def user(username):
     user = User.query.filter_by(username=username).first()
-    notes = user.notes.order_by(Note.timestamp.desc()).all()
-    return render_template('user.html', user=user, notes=notes)
+    page = request.args.get('page', 1, type=int)
+    pagination = user.notes.order_by(Note.timestamp.desc()).paginate(page, per_page=12, error_out=False)
+    notes = pagination.items
+    return render_template('user.html', notes=notes, pagination=pagination)
 
 @main.route('/note/<int:id>')
 def note(id):

@@ -1,0 +1,20 @@
+    <div class="row">
+      {% for note in notes %}      
+        <div class="col s12 m4">
+          <div class="card white">
+            <div class="card-content black-text">
+              <span class="card-title green-text">{{ note.title | truncate(10, True, '...') }}</span>
+              <p>{{ note.body | striptags | truncate(30, True, '...') }}</p>
+            </div>
+            <div class="card-action">
+              <span><i class="material-icons">perm_identity</i>{{ note.author.username }}</span>	      	      
+              <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+	      {% if current_user == note.author %}	     
+                <a href="{{ url_for('main.edit', id=note.id) }}"><i class="material-icons">mode_edit</i></a>
+                <a href="{{ url_for('main.delete', id=note.id) }}"><i class="material-icons">delete</i></a>
+	      {% endif %}	     
+            </div>
+          </div>
+        </div>     
+      {% endfor %}
+    </div>

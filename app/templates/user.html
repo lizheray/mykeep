@@ -1,24 +1,9 @@
 {% extends "base.html" %}
+{% import "_macros.html" as macros %}
 
 {% block page_content %}
-    <div class="row">
-      {% for note in notes %}      
-        <div class="col s12 m4">
-          <div class="card white">
-
-            <div class="card-action">
-              <span><i class="material-icons">perm_identity</i>{{ note.author.username }}</span>	      
-	      
-              <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>	     
-              <a href="{{ url_for('main.edit', id=note.id) }}"><i class="material-icons">mode_edit</i></a>
-              <a href="{{ url_for('main.delete', id=note.id) }}"><i class="material-icons">delete</i></a>	     
-            </div>
-            <div class="card-content black-text">
-              <span class="card-title green-text">{{ note.title }}</span>
-              <p>{{ note.body | safe | truncate(50, False, '...') }}</p>
-            </div>
-          </div>
-        </div>     
-      {% endfor %}
-    </div>
+    {% include '_notes.html' %}
+    {% if pagination %}
+    <div class="pagination">{{ macros.pagination_widget(pagination, '.user', username=current_user.username) }}</div>
+    {% endif %}
 {% endblock %}
