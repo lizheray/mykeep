@@ -49,7 +49,9 @@
 	    <div class="alert">Password must match!</div>
 	  {% endif %}
 	  <div class="row">
-	  {{ form.submit(class="btn waves-effect waves-light") }}
+            <button class="btn waves-effect waves-light" type="submit">Register
+              <i class="material-icons right">send</i>
+  	    </button>
 	  <span>Have an account? <a href="{{ url_for('auth.login') }}">Click here to login</a>.</span>
 	  </div>
         </form>

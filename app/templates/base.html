@@ -7,12 +7,13 @@
   <title>My Keep - dev</title>
 
   <!-- CSS  -->
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://fonts.lug.ustc.edu.cn/icon?family=Material+Icons" rel="stylesheet">
   <link href="{{ url_for('static', filename='css/materialize.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
   <link href="{{ url_for('static', filename='css/style.css') }}" type="text/css" rel="stylesheet" media="screen,projection"/>
   <style type="text/css">.alert {font-size:12px; color:red;}</style>
   <style>.card-content {height:150px;}</style>
   <style>.pagination {text-align:center;}</style>
+  <style> select {display:block;}</style>
   <link href="{{ url_for('static', filename='styles/simditor.css') }}" rel="stylesheet" type="text/css"/>
 {% endblock %}
 </head>
@@ -21,7 +22,14 @@
 {% block navbar %}
   <nav class="light-blue lighten-1" role="navigation">
     <div class="nav-wrapper container"><a id="logo-container" href="/" class="brand-logo">My Keep</a>
+
       <ul class="right hide-on-med-and-down">
+	<li>
+	  <form action="{{ url_for('main.search') }}" id="sform">
+	    <input type="text" name="keyword" required>
+	  </form>
+	</li>
+	<li><a href="javascript:;" onclick="document.getElementById('sform').submit();"><i class="material-icons">search</i></a></li>
 	<li><a href="{{ url_for('main.write') }}"><i class="material-icons">add</i></a></li>
 	{% if current_user.is_authenticated %}
         <li><a href="{{ url_for('auth.logout') }}">Log out</a></li>
@@ -47,7 +55,7 @@
 
   <!--  Scripts-->
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <script src="{{ url_for('static', filename='js/materialize.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/materialize.min.js') }}"></script>
   <script src="{{ url_for('static', filename='js/init.js') }}"></script>
   <script type="text/javascript" src="{{ url_for('static', filename='scripts/jquery.min.js') }}"></script>
   <script type="text/javascript" src="{{ url_for('static', filename='scripts/module.js') }}"></script>
@@ -56,8 +64,30 @@
   <script type="text/javascript" src="{{ url_for('static', filename='scripts/simditor.js') }}"></script>
   <script>
     var editor = new Simditor({
-    textarea: $('#editor')
+    textarea: $('#editor'),
     //optional options
+    toolbar: [
+  'title',
+  'bold',
+  'italic',
+  'underline',
+  'strikethrough',
+  'fontScale',
+  'color',
+  '|',
+  'ol',           
+  'ul',             
+  'blockquote',
+  'code',           
+  'table',
+  '|',
+  'link',
+  'image',
+  'hr',             
+  'indent',
+  'outdent',
+  'alignment'
+]
   });
   </script>
 </body>

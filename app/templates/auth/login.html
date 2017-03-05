@@ -31,7 +31,10 @@
 	    <div class="alert">Invalid user or password!</div>
 	  {% endif %}
 	  <div class="row">
-	  {{ form.submit(class="btn waves-effect waves-light") }}
+            <button class="btn waves-effect waves-light" type="submit">Log in
+              <i class="material-icons right">send</i>
+  	    </button>        
+	  
 	  <span>New user? <a href="{{ url_for('auth.register') }}">Click here to register</a>.</span>
 	  </div>
         </form>

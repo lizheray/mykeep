@@ -6,4 +6,4 @@ class NoteForm(Form):
     title = StringField(validators=[Required(), Length(1, 64)])
     body = TextAreaField(validators=[Required()])
     isPublic = BooleanField()
-    submit = SubmitField('Submit')
+

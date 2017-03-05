@@ -3,7 +3,7 @@
         <div class="col s12 m4">
           <div class="card white">
             <div class="card-content black-text">
-              <span class="card-title green-text">{{ note.title | truncate(10, True, '...') }}</span>
+              <a href="{{ url_for('main.note', id=note.id) }}"><span class="card-title green-text">{{ note.title | truncate(10, True, '...') }}</span></a>
               <p>{{ note.body | striptags | truncate(30, True, '...') }}</p>
             </div>
             <div class="card-action">

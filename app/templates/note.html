@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block page_content %}
+      <div class="page-header green-text">
+	<h4>{{ note.title }}</h4>
+      </div>
+      <div class="row">
+	<span><i class="material-icons">perm_identity</i>{{ note.author.username }}</span>
+	<span><i class="material-icons">av_timer</i>{{ note.timestamp }}</span>
+      </div>
+      <div class="row">
+	<p>{{ note.body | safe}}</p>
+      </div>
+{% endblock %}
