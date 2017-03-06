@@ -6,4 +6,7 @@
     {% if pagination %}
     <div class="pagination">{{ macros.pagination_widget(pagination, '.index') }}</div>
     {% endif %}
+
+    <a href="{{ url_for('main.write') }}" class="btn-floating btn-large waves-effect waves-light red right"><i class="material-icons">add</i></a>
+        
 {% endblock %}
