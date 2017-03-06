@@ -21,15 +21,17 @@
 <body>
 {% block navbar %}
   <nav class="light-blue lighten-1" role="navigation">
-    <div class="nav-wrapper container"><a id="logo-container" href="/" class="brand-logo">My Keep</a>
+    <div class="nav-wrapper container"><a id="logo-container" href="/" class="brand-logo left">My Keep</a>
 
-      <ul class="right hide-on-med-and-down">
+      <ul class="right">
+	<!-- 
 	<li>
 	  <form action="{{ url_for('main.search') }}" id="sform">
 	    <input type="text" name="keyword" required>
 	  </form>
 	</li>
 	<li><a href="javascript:;" onclick="document.getElementById('sform').submit();"><i class="material-icons">search</i></a></li>
+	-->
 	<li><a href="{{ url_for('main.write') }}"><i class="material-icons">add</i></a></li>
 	{% if current_user.is_authenticated %}
         <li><a href="{{ url_for('auth.logout') }}">Log out</a></li>
